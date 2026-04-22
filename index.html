@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年治理与合规计分卡</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="flex justify-end print-hidden">
+            <button onclick="window.print()" class="export-btn">
+                <i data-lucide="printer" style="width: 16px; height: 16px;"></i>
+                导出 PDF
+            </button>
+        </div>
+
+        <div class="main-card">
+            <div class="header-banner">
+                <div>
+                    <h1 class="title">2025年治理与合规计分卡</h1>
+                    <div class="subtitle-area">
+                        <i data-lucide="building-2" style="width: 20px; height: 20px;"></i>
+                        <span class="font-semibold" style="white-space: nowrap;">业务单元:</span>
+                        <select id="bu-selector" class="bu-input" onchange="loadBUData()">
+                            <option value="">-- 请选择业务单元以模拟分数 --</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-grid">
+                <div class="stat-card stat-gov">
+                    <div class="stat-title">治理 (60%) <span id="cap-indicator" class="text-xs font-normal opacity-70 ml-1"></span></div>
+                    <div class="stat-score"><span id="gov-weighted-score">0</span> <span class="pts-label">分</span></div>
+                    <div>
+                        <div class="progress-header">
+                            <span>进度</span>
+                            <span id="gov-progress-text">0%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="gov-progress-bar" class="progress-fill fill-gov" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card stat-comp">
+                    <div class="stat-title">合规 (40%)</div>
+                    <div class="stat-score"><span id="comp-weighted-score">0</span> <span class="pts-label">分</span></div>
+                    <div>
+                        <div class="progress-header">
+                            <span>进度</span>
+                            <span id="comp-progress-text">0%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="comp-progress-bar" class="progress-fill fill-comp" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-total">
+                    <i data-lucide="trophy" class="trophy-bg"></i>
+                    <div class="stat-title">最终得分</div>
+                    <div class="stat-score"><span id="final-score">0</span><span class="pts-label">%</span></div>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <span class="flex items-center gap-1 font-semibold"><span class="dot dot-gold"></span> 金奖 (Gold): 90-100%</span>
+                <span class="flex items-center gap-1 font-semibold"><span class="dot dot-silver"></span> 银奖 (Silver): 75-89%</span>
+                <span class="flex items-center gap-1 font-semibold"><span class="dot dot-bronze"></span> 铜奖 (Bronze): 60-74%</span>
+            </div>
+        </div>
+
+        <div id="detail-sections" class="details-grid">
+            </div>
+
+        <div class="footer-info print-hidden">
+            <i data-lucide="info" style="width: 16px; height: 16px;"></i> 
+            数据基于 2025 年实际评估报告。选择业务单元以自动填充折算分数。
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
