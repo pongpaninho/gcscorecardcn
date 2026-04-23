@@ -1,4 +1,52 @@
-// ข้อมูลโครงสร้างเกณฑ์การประเมิน (ภาษาจีน)
+// ฐานข้อมูลคะแนนจริงราย Business Unit (省区/事业线)
+const BU_DATA = {
+    "安徽区 Anhui Area": { g1_1: 5, g1_2: 5, g1_3: 10, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 20, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "水产事业（育种/研发）Aquaculture Business": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 6, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "农牧食品北京总部 Beijing Headquarter": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 1, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "北京战区 Beijing Strategic Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "正大康地 Chia Tai Conti": { g1_1: 0, g1_2: 2, g1_3: 5, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 15, g4_2: 5, extra_score: 5, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 6, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "重庆区 Chongqing Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 12, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "商业地产（上海帝泰项目）Commercial Real Estate (Shanghai Kinghill)": { g1_1: 5, g1_2: 0, g1_3: 10, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 5, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "商业地产企业中国区Commercial Real Estate China Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "正大生物 CP Bio": { g1_1: 5, g1_2: 2, g1_3: 5, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 15, g4_2: 5, extra_score: 5, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "正大制药 CP Pharmacy": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 10, g3_1: 5, g3_2: 0, g4_1: 5, g4_2: 5, extra_score: 10, c1_1: 20, c1_2: 20, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "植物一条龙 Crop Intergration Business": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 20, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "电商事业 E-commerce Business": { g1_1: 0, g1_2: 0, g1_3: 10, g1_4: 0, g2_1: 15, g2_2: 10, g3_1: 5, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 4, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "农牧工程技术 Engineering Technology": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 12, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "食品事业段佩财SVC区 Food Business Duan Peicai SVC Area": { g1_1: 5, g1_2: 0, g1_3: 10, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "食品事业魏范波区 Food Business Wei Fanbo Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 12, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 6, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "食品事业邢继宪SVC区 Food Business Xing Jixian SVC Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 12, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "福建区 Fujian Area": { g1_1: 5, g1_2: 0, g1_3: 10, g1_4: 0, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "甘肃&宁夏&青海区 Gansu & Ningxia & Qinghai Area": { g1_1: 0, g1_2: 5, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 1, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "广东湛江&海南区 Guangdong Zhanjiang & Hainan Area": { g1_1: 5, g1_2: 0, g1_3: 5, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "广西区 Guangxi Area": { g1_1: 0, g1_2: 0, g1_3: 10, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 20, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "贵州区 Guizhou Area": { g1_1: 5, g1_2: 5, g1_3: 10, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "黑龙江&吉林区 Heilongjiang & Jilin Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 0, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "河南区 Henan Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "湖北区 Hubei Area": { g1_1: 5, g1_2: 0, g1_3: 10, g1_4: 0, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "湖南区 Hunan Area": { g1_1: 5, g1_2: 0, g1_3: 10, g1_4: 5, g2_1: 15, g2_2: 0, g3_1: 10, g3_2: 15, g4_1: 5, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "内蒙古&山西区 Inner Mongolia & Shanxi Area": { g1_1: 5, g1_2: 0, g1_3: 5, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 5, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "江苏区 Jiangsu Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "江西区 Jiangxi Area": { g1_1: 5, g1_2: 5, g1_3: 5, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "京津冀区 Jingjinji Area": { g1_1: 5, g1_2: 0, g1_3: 5, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 5, g4_2: 5, extra_score: 5, c1_1: 12, c1_2: 12, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "辽宁区 Liaoning Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "机电事业 Mechanical Business": { g1_1: 5, g1_2: 0, g1_3: 5, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "现代食品 Modern Food": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 20, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "种植事业 Plant Business": { g1_1: 5, g1_2: 5, g1_3: 5, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 10, g4_2: 5, extra_score: 5, c1_1: 12, c1_2: 12, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "预混料区 Premix Business": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 12, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 4, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "零售事业（上海）Retail Business (Shanghai)": { g1_1: 5, g1_2: 1, g1_3: 10, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 15, g4_1: 5, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "零售事业（广东广西）Retail Business (Guangdong&Guangxi)": { g1_1: 5, g1_2: 5, g1_3: 0, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 5, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 1, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 4, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "陕西区 Shaanxi Area": { g1_1: 5, g1_2: 5, g1_3: 5, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 10, g3_2: 10, g4_1: 10, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "山东区 Shandong Area": { g1_1: 5, g1_2: 0, g1_3: 10, g1_4: 0, g2_1: 15, g2_2: 10, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "东营项目 Shandong DongYing Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "四川区 Sichuan Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 5, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "新疆区 Xinjiang Area": { g1_1: 5, g1_2: 5, g1_3: 10, g1_4: 5, g2_1: 15, g2_2: 10, g3_1: 5, g3_2: 10, g4_1: 10, g4_2: 5, extra_score: 1, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "云南区 Yunnan Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 0, g3_1: 10, g3_2: 0, g4_1: 0, g4_2: 5, extra_score: 10, c1_1: 16, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "浙江区 Zhejiang Area": { g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 15, g2_2: 10, g3_1: 5, g3_2: 15, g4_1: 0, g4_2: 5, extra_score: 1, c1_1: 12, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 8, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 },
+    "正信银行 Zheng Xin Bank": { g1_1: 5, g1_2: 5, g1_3: 10, g1_4: 5, g2_1: 15, g2_2: 5, g3_1: 5, g3_2: 0, g4_1: 5, g4_2: 5, extra_score: 10, c1_1: 20, c1_2: 16, c2_1: 'n/a', c2_2: 5, c3_1: 10, c3_2: 5, c3_3: 10, c3_4: 5, c4_1: 5, c4_2: 5, c4_3: 6 }
+};
+
+// ข้อมูลโครงสร้างเกณฑ์การประเมิน
 const CRITERIA_DATA = {
     governance: {
         title: "治理",
@@ -85,7 +133,7 @@ const CRITERIA_DATA = {
     }
 };
 
-// สถานะคะแนน (ตั้งค่าเริ่มต้นเป็น 0 ทั้งหมด)
+// สถานะคะแนนเริ่มต้น
 let scores = {
     g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0,
     g2_1: 0, g2_2: 0,
@@ -97,6 +145,39 @@ let scores = {
     c3_1: 0, c3_2: 0, c3_3: 0, c3_4: 0,
     c4_1: 0, c4_2: 0, c4_3: 0
 };
+
+// ฟังก์ชันโหลดข้อมูลเข้า Dropdown
+function initBUDropdown() {
+    const select = document.getElementById('bu-selector');
+    Object.keys(BU_DATA).forEach(bu => {
+        const opt = document.createElement('option');
+        opt.value = bu;
+        opt.innerText = bu;
+        select.appendChild(opt);
+    });
+}
+
+// เมื่อเลือกจาก Dropdown
+function loadBUData() {
+    const buSelect = document.getElementById('bu-selector');
+    const buName = buSelect.value;
+    
+    if(buName && BU_DATA[buName]) {
+        const data = BU_DATA[buName];
+        Object.keys(data).forEach(key => scores[key] = data[key]);
+    } else {
+        scores = {
+            g1_1: 0, g1_2: 0, g1_3: 0, g1_4: 0, g2_1: 0, g2_2: 0, g3_1: 0, g3_2: 0, g4_1: 0, g4_2: 0, extra_score: 0,
+            c1_1: 0, c1_2: 0, c2_1: 0, c2_2: 0, c3_1: 0, c3_2: 0, c3_3: 0, c3_4: 0, c4_1: 0, c4_2: 0, c4_3: 0
+        };
+    }
+    
+    const sectionsContainer = document.getElementById('detail-sections');
+    sectionsContainer.innerHTML = generateSectionHTML(CRITERIA_DATA.governance) + generateSectionHTML(CRITERIA_DATA.compliance);
+    
+    calculateAndUpdate();
+    lucide.createIcons();
+}
 
 // ฟังก์ชันสร้าง UI 
 function generateSectionHTML(sectionData) {
@@ -131,7 +212,10 @@ function generateSectionHTML(sectionData) {
         `;
 
         category.items.forEach(item => {
-            let sliderVal = scores[item.id] || 0;
+            let valueDisplay = scores[item.id];
+            let isNA = valueDisplay === 'n/a';
+            let sliderVal = isNA ? 0 : (valueDisplay || 0);
+            let disabledAttr = isNA ? 'disabled' : '';
 
             html += `
                 <div class="item-row">
@@ -146,11 +230,12 @@ function generateSectionHTML(sectionData) {
                             value="${sliderVal}"
                             oninput="handleScoreChange('${item.id}', this.value)"
                             class="${sliderClass}"
+                            ${disabledAttr}
                         />
                     </div>
                     <div class="text-right">
-                        <span class="item-score-box">
-                            <span id="val-${item.id}">${sliderVal}</span> / ${item.max}
+                        <span class="item-score-box" style="${isNA ? 'background: var(--gray-200); color: var(--gray-500);' : ''}">
+                            ${isNA ? 'N/A' : `<span id="val-${item.id}">${sliderVal}</span> / ${item.max}`}
                         </span>
                     </div>
                 </div>
@@ -172,7 +257,7 @@ function calculateAndUpdate() {
 
     CRITERIA_DATA.governance.categories.forEach(cat => {
         cat.items.forEach(item => {
-            if(item.id !== 'extra_score') {
+            if(item.id !== 'extra_score' && scores[item.id] !== 'n/a') {
                 govBaseTotal += Number(scores[item.id]) || 0;
                 govMax += item.max;
             }
@@ -194,8 +279,10 @@ function calculateAndUpdate() {
     let compMax = 0;
     CRITERIA_DATA.compliance.categories.forEach(cat => {
         cat.items.forEach(item => {
-            compTotal += Number(scores[item.id]) || 0;
-            compMax += item.max;
+            if(scores[item.id] !== 'n/a') {
+                compTotal += Number(scores[item.id]) || 0;
+                compMax += item.max;
+            }
         });
     });
 
@@ -227,22 +314,24 @@ function calculateAndUpdate() {
 
 // เมื่อมีการเลื่อน Slider
 function handleScoreChange(id, value) {
-    scores[id] = Number(value);
-    document.getElementById(`val-${id}`).innerText = scores[id];
-    calculateAndUpdate();
+    if(scores[id] !== 'n/a') {
+        scores[id] = Number(value);
+        document.getElementById(`val-${id}`).innerText = scores[id];
+        
+        // หากผู้ใช้เลื่อนเอง ให้รีเซ็ต Dropdown เป็นค่าว่าง
+        const buSelect = document.getElementById('bu-selector');
+        if (buSelect) buSelect.value = ""; 
+        
+        calculateAndUpdate();
+    }
 }
 
 // เริ่มต้นการทำงานเมื่อโหลดหน้าเว็บ
 document.addEventListener('DOMContentLoaded', () => {
-    // ซ่อน หรือ ปิดการใช้งาน Dropdown ฝั่ง HTML หากไม่จำเป็นต้องใช้แล้ว
-    const buDropdownArea = document.querySelector('.subtitle-area');
-    if (buDropdownArea) {
-        // buDropdownArea.style.display = 'none'; // เปิด Comment บรรทัดนี้หากต้องการซ่อนช่องเลือก Business Unit ไปเลย
-    }
-
     const sectionsContainer = document.getElementById('detail-sections');
     sectionsContainer.innerHTML = generateSectionHTML(CRITERIA_DATA.governance) + generateSectionHTML(CRITERIA_DATA.compliance);
 
+    initBUDropdown(); // สร้างตัวเลือก Business Unit ทั้งหมด
     calculateAndUpdate();
     lucide.createIcons();
 });
